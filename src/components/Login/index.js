@@ -7,6 +7,9 @@ class Login extends React.Component{
     constructor(props)
     {
         super(props);
+        this.state={
+            provideValue:false
+        }
         this.handleLogin=this.handleLogin.bind(this);
     }
     componentDidMount()
@@ -21,6 +24,16 @@ class Login extends React.Component{
         e.preventDefault();
         let email=document.querySelector('#emailId').value;
         let password=document.querySelector('#password').value;
+        if(email.length===0 || password.length===0)
+        {
+            this.setState({
+                provideValue:true
+            });
+            return false;
+        }
+        this.setState({
+            provideValue:false
+        });
          this.props.login({email, password},() => {
             this.props.history.push('/');
           });
@@ -56,6 +69,7 @@ class Login extends React.Component{
             { isLoginPending && <div>Please wait...</div> }
         { isLoginSuccess && <div>Success.</div> }
         { loginError && <div>{loginError.message}</div> }
+        { this.state.provideValue && <div>Please enter user name and password</div> }
         </div>);
     }
 }

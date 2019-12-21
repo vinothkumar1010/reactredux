@@ -29,7 +29,7 @@ const categorys=[{
     categoryId:"4",
     categoryName:"Drones",
     categoryDescription:"All drone items",
-    categoryAmount:"30",
+    categoryAmount:"300-100K",
     categoryCostCurrency:"USD",
     onlyForUser:true,
     image:"drones.jpg" 
@@ -47,7 +47,7 @@ const categorys=[{
     categoryId:"6",
     categoryName:"Laptops",
     categoryDescription:"Various brand laptops",
-    categoryAmount:"30",
+    categoryAmount:"100-7500",
     categoryCostCurrency:"USD",
     onlyForUser:true,
     image:"laptop.jpg" 
