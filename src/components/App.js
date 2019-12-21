@@ -16,7 +16,9 @@ import {
 export default function App() {
   const store = configureStore();
   //store.dispatch(productActions.fetchProducts());
-
+  
+  const loginSate=store.getState().login;
+  console.log("*************")
   return (
     <Provider store={store}>
     <Router >
@@ -27,24 +29,16 @@ export default function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/Login">Login</Link>
+              {loginSate.isLoginSuccess?(<Link to="/Logout">Logout</Link>):(<Link to="/Login">Login</Link>)}
             </li>
             <li>
               <Link to="/about">About</Link>
             </li>
           </ul>
         </nav>
-        <Switch>
-          {/* <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route> */}
            <Switch>
             <Route exact path="/login" component={Login} />  
             <Route exact path="/" component={Home} />           
-        </Switch>
         </Switch>
       </div>
     </Router>

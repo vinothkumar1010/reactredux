@@ -20,7 +20,7 @@ export const loginFailure=(isLoginFailure)=> {
         isLoginFailure
         }
     }
-export const checkLoginInfo = (email,password) => {
+export const checkLoginInfo = ({email,password},callback) => {
         // Returns a dispatcher function
         // that dispatches an action at a later time
         return (dispatch) => {
@@ -34,7 +34,7 @@ export const checkLoginInfo = (email,password) => {
                
                 dispatch(loginPending(false));
                     dispatch(loginSuccess(true));
-                   return error;
+                    callback();
                    
             } else {
                 dispatch(loginSuccess(false));
@@ -42,7 +42,7 @@ export const checkLoginInfo = (email,password) => {
               dispatch(loginFailure(error));
             }
           });
-         
+          
         };
       };
 

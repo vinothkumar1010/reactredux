@@ -9,12 +9,17 @@ class Login extends React.Component{
         super(props);
         this.handleLogin=this.handleLogin.bind(this);
     }
+    componentDidMount()
+    {
+        if(this.props.isLoginSuccess)
+            this.props.history.push('/');
+    }
     handleLogin(e)
     {
         e.preventDefault();
         let email=document.querySelector('#emailId').value;
         let password=document.querySelector('#password').value;
-         this.props.login(email, password,() => {
+         this.props.login({email, password},() => {
              console.log("called")
             this.props.history.push('/');
           });
