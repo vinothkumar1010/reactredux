@@ -14,13 +14,13 @@ class Login extends React.Component{
         if(this.props.isLoginSuccess)
             this.props.history.push('/');
     }
-    handleLogin(e)
+  
+    handleLogin=e=>
     {
         e.preventDefault();
         let email=document.querySelector('#emailId').value;
         let password=document.querySelector('#password').value;
          this.props.login({email, password},() => {
-             console.log("called")
             this.props.history.push('/');
           });
     
@@ -28,24 +28,23 @@ class Login extends React.Component{
     render()
     {
         let {isLoginPending, isLoginSuccess, loginError} = this.props;
-        console.log(this.props)
         return( 
            
             <div className="loginContainer">
-                <form id="loginForm" name="loginForm">
+                <form id="loginForm" name="loginForm" onSubmit={this.handleLogin}>
                     <div>
                        
                         <div>
                             <label htmlFor="emailId">
                                 Email {isLoginSuccess}
                             </label>
-                            <input type="email" id="emailId" name="emailId" placeholder="abc@abc.com"/>
+                            <input type="email" id="emailId" name="emailId" placeholder="abc@abc.com" value="abc@abc.com"/>
                         </div>
                         <div>
                             <label htmlFor="password">
                                 password
                             </label>
-                            <input type="password" id="password" name="password"  placeholder="Sample@Test1"/>
+                            <input type="password" id="password" name="password"  placeholder="Sample@Test1" value="Sample@Test1"/>
                         </div>
                     </div>
                    

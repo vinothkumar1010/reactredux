@@ -56,3 +56,13 @@ export const checkLoginInfo = ({email,password},callback) => {
           }
         }, 1000);
       }
+
+      export const logOutUser = () => {
+        // Returns a dispatcher function
+        // that dispatches an action at a later time
+        return (dispatch) => {
+            dispatch(loginSuccess(false));
+            dispatch(loginPending(false));
+           // return Promise.resolve();
+        }
+    }

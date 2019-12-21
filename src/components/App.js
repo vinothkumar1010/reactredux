@@ -3,40 +3,21 @@ import configureStore from "../store/store"
 import { Provider } from 'react-redux';
 import Home from "./Home"
 import Login from "./Login"
-//import * as productActions from "../actions/productActions";
-
+import Navbar from "./Navbar"
 import "./App.css"
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-
 export default function App() {
   const store = configureStore();
-  //store.dispatch(productActions.fetchProducts());
-  
-  const loginSate=store.getState().login;
-  console.log("*************")
   return (
     <Provider store={store}>
     <Router >
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              {loginSate.isLoginSuccess?(<Link to="/Logout">Logout</Link>):(<Link to="/Login">Login</Link>)}
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
-        </nav>
-           <Switch>
+      <Navbar/>
+        <Switch>
             <Route exact path="/login" component={Login} />  
             <Route exact path="/" component={Home} />           
         </Switch>

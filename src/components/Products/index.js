@@ -4,25 +4,28 @@ import "./products.css";
 import * as productActions from "../../actions/productActions";
 class Products extends React.PureComponent
 {
+
  
   componentDidMount()
   {
-    console.log("ccccc")
-    const userLoggedInStatus=this.props.userLoggedIn
-    
-  this.props.productsCatalog(userLoggedInStatus);
+    this.props.productsCatalog(this.props.userLoggedIn);
+  }
+  componentDidUpdate(prevProps){
+    if(prevProps.userLoggedIn !== this.props.userLoggedIn){
+        this.setState({          
+          userLoggedIn: this.props.userLoggedIn
+        });
+        this.props.productsCatalog(this.props.userLoggedIn);
+    }
   }
     render()
     {
-      const {pending,products,error}=this.props;
-     // const allProducts=this.props.product;
-
-      console.log(products)
+      const {pending,products}=this.props;
         return (
         
         <div>
-            <h1>All Products</h1>
-        {pending ? (<p>Loading</p>):(
+            <h1>Product Categories</h1>
+            {pending ? (<p>Loading</p>):(
              <div className="allProductContainer">{products.map((productInfo,index)=><div key={index} className="product">
              <img src={process.env.PUBLIC_URL + "/images/"+productInfo.image} alt={productInfo.productName}/>
              <div>{productInfo.productId}</div> 
@@ -32,14 +35,11 @@ class Products extends React.PureComponent
            )}
            </div>
         )}
-         {/*  */}
         </div>);
     }
 }
-const mapStateToProps = (state, ownProps) => {
-    console.log(state)
+const mapStateToProps = (state) => {
     return {
-      // You can now say this.props.books
       pending:state.products.pending,
       error:state.products.error,
       products: state.products.products,
