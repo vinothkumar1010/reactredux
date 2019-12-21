@@ -14,6 +14,7 @@ class Login extends React.Component{
         if(this.props.isLoginSuccess)
             this.props.history.push('/');
     }
+ 
   
     handleLogin=e=>
     {
@@ -38,20 +39,20 @@ class Login extends React.Component{
                             <label htmlFor="emailId">
                                 Email {isLoginSuccess}
                             </label>
-                            <input type="email" id="emailId" name="emailId" placeholder="abc@abc.com" value="abc@abc.com"/>
+                            <input type="email" id="emailId" name="emailId" placeholder="abc@abc.com" />
                         </div>
                         <div>
                             <label htmlFor="password">
                                 password
                             </label>
-                            <input type="password" id="password" name="password"  placeholder="Sample@Test1" value="Sample@Test1"/>
+                            <input type="password" id="password" name="password"  placeholder="tester" autoComplete="off"/>
                         </div>
                     </div>
-                   
+                    <div className="finalSection">
+                        <button type="submit" onClick={this.handleLogin}>Login</button>
+                 </div>
             </form>
-            <div className="finalSection">
-                <button type="submit" onClick={this.handleLogin}>Login</button>
-            </div>
+            
             { isLoginPending && <div>Please wait...</div> }
         { isLoginSuccess && <div>Success.</div> }
         { loginError && <div>{loginError.message}</div> }

@@ -21,17 +21,12 @@ export const loginFailure=(isLoginFailure)=> {
         }
     }
 export const checkLoginInfo = ({email,password},callback) => {
-        // Returns a dispatcher function
-        // that dispatches an action at a later time
         return (dispatch) => {
-          // Returns a promise
           dispatch(loginPending(true));
           verifyLoginDeatils(email, password, error => {
             
             
             if (!error) {
-                console.log("Success")
-               
                 dispatch(loginPending(false));
                     dispatch(loginSuccess(true));
                     callback();
@@ -49,7 +44,7 @@ export const checkLoginInfo = ({email,password},callback) => {
       function verifyLoginDeatils(email, password, callback) {
           
         setTimeout(() => {
-          if (email === 'abc@abc.com' && password === 'Sample@Test1') {
+          if (email === 'abc@abc.com' && password === 'tester') {
             return callback();
           } else {
             return callback(new Error('Invalid email and password'));
@@ -58,11 +53,8 @@ export const checkLoginInfo = ({email,password},callback) => {
       }
 
       export const logOutUser = () => {
-        // Returns a dispatcher function
-        // that dispatches an action at a later time
         return (dispatch) => {
             dispatch(loginSuccess(false));
             dispatch(loginPending(false));
-           // return Promise.resolve();
         }
     }

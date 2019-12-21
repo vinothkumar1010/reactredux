@@ -23,14 +23,20 @@ class Products extends React.PureComponent
       const {pending,products}=this.props;
         return (
         
-        <div>
+        <div className="allProductContainer">
             <h1>Product Categories</h1>
-            {pending ? (<p>Loading</p>):(
-             <div className="allProductContainer">{products.map((productInfo,index)=><div key={index} className="product">
-             <img src={process.env.PUBLIC_URL + "/images/"+productInfo.image} alt={productInfo.productName}/>
-             <div>{productInfo.productId}</div> 
-             <div>{productInfo.productName}</div>
-             <div>{productInfo.productDescription}</div>
+            {pending ? (<p>Loading</p>):(products.length===0)?<div className="product noProducts">
+              <div className="noProductInfo">We are working hard to bring some products to you.....</div>
+              <div className="imageHolder"> <img src={process.env.PUBLIC_URL + "/images/working.jpg"} alt="we are working"/></div>
+            </div>:(
+        <div >{products.map((productInfo,index)=><div key={index} className="product">
+              <div className="imageHolder"> <img src={process.env.PUBLIC_URL + "/images/"+productInfo.image} alt={productInfo.categoryName}/></div>
+             <div className="porductInformation">
+                    
+                  <div className="categoryName">{productInfo.categoryName}</div>
+                  <div className="categoryDes">{productInfo.categoryDescription}</div>
+                  <div className="priceRange">{"Price range: "+productInfo.categoryCostCurrency+" "+productInfo.categoryAmount}</div> 
+              </div>
              </div>
            )}
            </div>
