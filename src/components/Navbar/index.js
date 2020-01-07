@@ -2,6 +2,7 @@ import React from "react"
 import {  NavLink, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import * as LoginActions from "../../actions/LoginActions"
+
 import "./navbar.css";
 class Navbar extends React.Component{
     constructor(props)
@@ -17,13 +18,22 @@ class Navbar extends React.Component{
          this.props.history.push('/');
      }) */
     }
+    componentDidUpdate()
+    {
+      console.log("my cart Items")
+      console.log(this.props.cartItems)
+    }
     render()
     {
         const {userLoggedIn} =this.props;
+        console.log(this.props)
         return (<nav className="nav">
             <ul>
               <li>
-              <NavLink to="/" activeClassName="active" exact={true}>Home</NavLink>
+                  <NavLink to="/" activeClassName="active" exact={true}>Home</NavLink>
+              </li>
+              <li>
+                    <NavLink to="/Cart" activeClassName="active" exact={true}>Cart <sup className="noOfItems">{this.props.cartItems.length}</sup></NavLink>
               </li>
               <li>
                 {userLoggedIn?(<NavLink to="/" activeClassName="" onClick={this.logout}>Logout</NavLink>):(<NavLink to="/Login">Login</NavLink>)}
@@ -35,7 +45,8 @@ class Navbar extends React.Component{
 }
 const mapStateToProps = (state) => {
     return {
-      userLoggedIn:state.login.isLoginSuccess
+      userLoggedIn:state.login.isLoginSuccess,
+      cartItems:state.cart.cartItems
     }
   };
   

@@ -33,7 +33,16 @@
     color: #444;
     cursor: default;
   }
-   
+  .noOfItems 
+  {
+    font-size:14px;
+    background-color: #fff;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    color:#000;
+    padding:3px;
+  }
   @media screen and (min-width: 768px) {
     .nav li {
       width: 120px;

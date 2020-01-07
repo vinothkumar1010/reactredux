@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Home from "./Home"
 import Login from "./Login"
 import Navbar from "./Navbar"
+import Cart from "./Cart"
 import "./App.css"
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ export default function App() {
       <Navbar/>
         <Switch>
             <Route exact path="/login" component={Login} />  
+            <Route exact path="/cart" component={Cart} />  
             <Route exact path="/" component={Home} />           
         </Switch>
       </div>
