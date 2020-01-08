@@ -30,7 +30,6 @@ class Products extends React.PureComponent
   }
     render()
     {
-      console.log(this.props.cartItems)
       const {pending,products}=this.props;
         return (
         

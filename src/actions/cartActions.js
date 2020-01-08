@@ -28,9 +28,7 @@ export const updateCart=(productId,count=1,addOrRemove="add")=>{
     return (dispatch,getState) => {
         dispatch(cartUpdatePending(true));
         let productsToCart=[...getState().cart.cartItems];
-        console.log(productsToCart)
         const hasValue=_isContains(productsToCart,"id",productId,false);
-        console.log("hasValue" +hasValue)
         let listedProducts=getState().products.products;
        
        if(!hasValue)
@@ -43,17 +41,12 @@ export const updateCart=(productId,count=1,addOrRemove="add")=>{
        else
        {
            let quantityofProduct=(addOrRemove==="add")?productsToCart[currentProductIndex]["quantity"]+1:(addOrRemove==="remove")?productsToCart[currentProductIndex]["quantity"]-1:count
-           console.log("quantityofProduct"+typeof quantityofProduct)
+           
            if(quantityofProduct!==0)
-           {
-            console.log("I am updating here"+ currentProductIndex)
                 productsToCart[currentProductIndex]["quantity"]=quantityofProduct;
-           }
             else
-            {
-                console.log("ishould come here to delete the index "+ currentProductIndex)
                 productsToCart.splice(currentProductIndex,1);
-            }
+        
        }
         dispatch(cartAddSuccess(productsToCart)); 
       }
@@ -72,15 +65,6 @@ function _isContains(json, keyname, value,fromInside,index) {
                 if(fromInside)               
                     currentProductIndex=index;
                 return true;
-            }
-               
+            }    
         });
-        
     }
-    /* function _isContains(json, keyname, value) {
-
-        return Object.keys(json).some(key => {
-                return typeof json[key] === 'object' ? 
-                _isContains(json[key], keyname, value) : key === keyname && json[key] === value;
-            });
-        } */

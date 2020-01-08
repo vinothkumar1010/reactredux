@@ -13,20 +13,11 @@ class Navbar extends React.Component{
     logout()
     {
         this.props.userLogOut();
-      /*  this.props.userLogOut().then(()=>{
-        alert("called");
-         this.props.history.push('/');
-     }) */
     }
-    componentDidUpdate()
-    {
-      console.log("my cart Items")
-      console.log(this.props.cartItems)
-    }
+    
     render()
     {
         const {userLoggedIn} =this.props;
-        console.log(this.props)
         return (<nav className="nav">
             <ul>
               <li>

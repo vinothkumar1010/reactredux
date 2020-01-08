@@ -15,9 +15,10 @@ class Cart extends React.Component{
         this.props.updateMyCart(productId,parseInt(quantity),addOrRemove)
     }
     render(){
+        let totalPrice=0;
         const {cartItems}=this.props;
         return (<div className="cartContainer">{cartItems.length===0?(<div>Your cart is empty. Please add some items to cart.</div>):
-        cartItems.map((item,index)=><div key={index} className="cartItemHolder">
+        <div>{cartItems.map((item,index)=><div key={index} className="cartItemHolder">
                 <div className="cartItemDetails">
                         <div className="imageAndCount">
                         
@@ -30,9 +31,15 @@ class Cart extends React.Component{
                         </div>
                 </div>
                 <div className="itemPriceCal">
+                    <span className="hide">{(totalPrice+=item.quantity*item.productInfo[0].categoryAmount)}</span>
                     <div className="priceCalc">{item.quantity}*{item.productInfo[0].categoryAmount}={item.quantity*item.productInfo[0].categoryAmount}</div>
                 </div>
-        </div>)
+        </div>)}
+        <div className="totalAndButton">
+            <div className="totalAmount">Total price: ${totalPrice}</div>
+            <div className="checkoutBtnHolder"><button id="checkout" name="checkout" className="checkoutBtn">Check out</button></div>
+        </div>
+        </div>
        
         }</div>)
     }
