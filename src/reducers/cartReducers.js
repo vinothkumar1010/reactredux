@@ -1,5 +1,5 @@
 
-import {CART_ADD_PENDING, CART_ADD_SUCCESS, CART_ADD_FAILURE, CART_LOAD_PENDING, CART_LOAD_SUCCESS, CART_LOAD_FAILURE, CART_DELETE_SUCCESS } from '../actions/cartActions';
+import {CART_UPDATE_PENDING, CART_UPDATE_SUCCESS, CART_UPDATE_FAILURE, CART_LOAD_PENDING, CART_LOAD_SUCCESS, CART_LOAD_FAILURE } from '../actions/cartActions';
 
 const initialState = {
     pending: true,//since we are loading initially this we put this as true
@@ -9,18 +9,18 @@ const initialState = {
 
 export default (state = initialState, action) =>{
     switch(action.type) {
-        case CART_ADD_PENDING: 
+        case CART_UPDATE_PENDING: 
             return {
                 ...state,
                 pending: true
             }
-        case CART_ADD_SUCCESS:
+        case CART_UPDATE_SUCCESS:
             return {
                 ...state,
                 pending: false,
                 cartItems: action.cartItems
             }
-        case CART_ADD_FAILURE:
+        case CART_UPDATE_FAILURE:
             return {
                 ...state,
                 pending: false,

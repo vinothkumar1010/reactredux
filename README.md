@@ -18,3 +18,7 @@ For more details read [here](https://unsplash.com/license)
 1. https://scotch.io/tutorials/build-a-bookshop-with-react-redux-i-react-redux-flow
 2. https://dev.to/markusclaus/fetching-data-from-an-api-using-reactredux-55ao
 
+# How to persist the state
+
+https://github.com/rt2zz/redux-persist/issues/58#issuecomment-413330349
+

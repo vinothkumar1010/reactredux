@@ -75,7 +75,7 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = (dispatch) => {
     return {
       productsCatalog:(statusofLogin)=>dispatch(productActions.fetchProducts(statusofLogin)),
-      addToMyCart:(productId)=>dispatch(cartActions.addToCart(productId))
+      addToMyCart:(productId)=>dispatch(cartActions.updateCart(productId))
     };
   }
   
