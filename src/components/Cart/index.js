@@ -2,11 +2,17 @@ import React from "react";
 import { connect } from 'react-redux';
 import "./cart.css";
 import * as cartActions from "../../actions/cartActions"
+import Checkout from "../Checkout";
 class Cart extends React.Component{
     constructor(props)
     {
         super(props);
+        this.state={
+            showModal:false
+        }
         this.updateCartDetails=this.updateCartDetails.bind(this);
+        this.openModal=this.openModal.bind(this);
+        this.closeModal=this.closeModal.bind(this);
     }
     updateCartDetails(productId,quantity,addOrRemove)
     {
@@ -14,6 +20,19 @@ class Cart extends React.Component{
             return false;
         this.props.updateMyCart(productId,parseInt(quantity),addOrRemove)
     }
+    openModal()
+    {
+            this.setState({
+                showModal:true
+            })
+    }
+    closeModal()
+    {
+        this.setState({
+            showModal:false
+        })
+    }
+
     render(){
         let totalPrice=0;
         const {cartItems}=this.props;
@@ -37,11 +56,11 @@ class Cart extends React.Component{
         </div>)}
         <div className="totalAndButton">
             <div className="totalAmount">Total price: ${totalPrice}</div>
-            <div className="checkoutBtnHolder"><button id="checkout" name="checkout" className="checkoutBtn">Check out</button></div>
+            <div className="checkoutBtnHolder"><button id="checkout" name="checkout" className="checkoutBtn" onClick={this.openModal}>Check out <span className="x-show hide">${totalPrice}</span></button></div>
         </div>
         </div>
        
-        }</div>)
+    }{this.state.showModal?<Checkout closeModal={this.closeModal}/>:""}</div>)
     }
 }
 const mapStateToProps = (state) => {

@@ -14,7 +14,9 @@ form > div {
     padding: 15px;
 }
     input[type='email'],
-    input[type='password'] {
+    input[type='password'],
+    input[type='tel']
+     {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -26,6 +28,27 @@ form > div {
         width: 516px;
         height: 35px;
 
+    }
+    input[type='checkbox'], input[type='radio'] {
+        opacity: 0;
+        width: 0 !important;
+        height: 1px !important;
+        padding: 0;
+        margin: 0;
+    }
+    input[type='checkbox'] ~ label span.styled_checkbox {
+        background: url("/images/checkbox.png") no-repeat;
+        height: 22px;
+        width: 22px;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+    input[type='checkbox']:checked ~ label span.styled_checkbox {
+        background: url("/images/checked_checkbox.png") no-repeat;
+        border: none !important;
     }
     form > div.finalSection
     {
@@ -46,14 +69,22 @@ form > div {
         text-transform: uppercase;
         border: none;
     }
+    .termText
+    {
+        display: inline-block;
+        width: 80%;
+        vertical-align: top;
+        margin-top:0;
+    }
     @media (max-width:767px) {
         input[type='email'],
-        input[type='password'] {
+        input[type='password'],
+        input[type='tel'] {
             width: 260px;
             height: 40px;
 
         }
-        .loginContainer,.finalSection {
+        .loginContainer,.finalSection,.checkoutModal {
             width: 90%;
             margin: 0 auto;
         }

@@ -25,7 +25,8 @@
   }
    
   .nav a:hover {
-    background-color: #ee6002;
+    
+    border-bottom:1px solid #ee6002;
   }
    
   .nav a.active {
@@ -60,7 +61,6 @@
     /* Option 1 - Display Inline */
     .nav li {
       display: inline-block;
-      margin-right: -4px;
     }
    
   }

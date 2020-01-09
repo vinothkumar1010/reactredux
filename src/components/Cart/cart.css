@@ -113,4 +113,17 @@
         outline: none;
         border:0px;
     }
+    .cartItemDetails
+    {
+        width:100%;
+    }
+    .imageAndCount
+    {
+        margin-left:0;
+    }
+    .x-show
+    {
+        display: inline-block;
+    }
+
 }

@@ -1,0 +1,58 @@
+.info
+{
+    font-size:.8em;
+}
+.checkoutModalHolder::after {
+    content: '';
+    display: block;
+    position: absolute; /* could also be absolute */
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+.checkoutModal
+{
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 50%;
+  height: auto;
+  z-index: 10001;
+  background-color: #fff;
+  padding:3%
+}
+.closeCheckout
+{
+    text-align: right;
+    color:#206FCC;
+    font-size: 1em;
+    text-decoration: none;
+    background-color: #fff;
+    text-transform: capitalize;
+    width: 100%;
+}
+#checkoutForm input
+{
+    width: 90%;
+}
+
+@media (max-width:767px) {
+
+    .checkoutModal
+{
+  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10001;
+  
+}
+.closeCheckout
+{
+    border:0px;
+}
+}
