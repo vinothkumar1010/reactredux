@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from 'react-redux';
 import "./checkout.css";
 class Checkout extends React.PureComponent
 {
@@ -10,7 +11,8 @@ class Checkout extends React.PureComponent
             phone:"",
             terms:""         
         }
-        this.updateFormState=this.updateFormState.bind(this)
+        this.updateFormState=this.updateFormState.bind(this);
+        this.handleCheckout=this.handleCheckout.bind(this);
     }
     updateFormState(event)
     {
@@ -18,13 +20,33 @@ class Checkout extends React.PureComponent
             [event.target.name]:event.target.value
         })
     }
+    handleCheckout(event)
+    {
+        event.preventDefault();
+        console.log(JSON.stringify(this.props.cartItems));
+        (async () => {
+           //await  fetch('https://us-central1-reactredux-2a612.cloudfunctions.net/sendMail', {
+            await  fetch('http://localhost:5001/reactredux-2a612/us-central1/sendMail', {
+            method: 'post',
+            mode: "cors",
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                 "email": this.state.email,
+                 "phone":this.state.phone,
+                 "products":this.props.cartItems
+            })
+         }).then((response) => response.text())
+         
+       })();
+
+    }
     render(){
         let {isCheckoutPending, isCheckoutSuccess, checkoutError} = this.props;
         return( 
            <div className="checkoutModalHolder">
             <div className="checkoutModal">
                     <div>
-                        <button class="closeCheckout" onClick={this.props.closeModal}>Close</button>
+                        <button className="closeCheckout" onClick={this.props.closeModal}>Close</button>
                     </div>
                 <form id="checkoutForm" name="checkoutForm" onSubmit={this.handleCheckout}>
                     <div>
@@ -43,8 +65,8 @@ class Checkout extends React.PureComponent
                         </div>
                         <div>
                             <input type="checkbox" id="terms" name="terms"/>
-                            <label for="terms">
-                                <span class="styled_checkbox"></span>
+                            <label htmlFor="terms">
+                                <span className="styled_checkbox"></span>
                                 <div className="termText">Yes, I accept the <a href="/willopenOurTermPage">Terms &amp; Conditions</a> and <a href="/willopenOurPrivacyPage">Privacy Policy</a></div>
                             </label>
                         </div>
@@ -53,7 +75,7 @@ class Checkout extends React.PureComponent
                         </div>
                     </div>
                     <div className="finalSection">
-                        <button type="submit" onClick={this.handleCheckout}>Send Email</button>
+                        <button type="button" onClick={this.handleCheckout}>Send Email</button>
                  </div>
             </form>
             
@@ -64,4 +86,12 @@ class Checkout extends React.PureComponent
         </div></div>);
     }
 }
-export default Checkout;
+const mapStateToProps = (state) => {
+    return {
+      cartItems:state.cart.cartItems
+    }
+  };
+    
+export default connect(
+    mapStateToProps
+)(Checkout);
