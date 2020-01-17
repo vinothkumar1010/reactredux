@@ -38,7 +38,14 @@
 {
     width: 90%;
 }
-
+input[type='email'].error, input[type='password'].error, input[type='tel'].error
+{
+  border:1px solid red;
+}
+input[type='checkbox'].error ~ label span.styled_checkbox {
+    background: url(/images/checkbox_error.png) no-repeat;
+    border: none !important;
+}
 @media (max-width:767px) {
 
     .checkoutModal

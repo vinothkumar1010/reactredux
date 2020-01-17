@@ -12,18 +12,19 @@ export const cartUpdatePending=(isCartAddPending)=> {
         isCartAddPending
     }
 }
-export const cartAddSuccess=(cartItems)=> {
+export const cartUpdateSuccess=(cartItems)=> {
     return {
         type: CART_UPDATE_SUCCESS,
         cartItems:cartItems,
         }
     }
-export const cartAddFailure=(isCartAddFailure)=> {
+export const cartUpdateFailure=(isCartUpdateFailure)=> {
     return {
         type: CART_UPDATE_FAILURE,
-        isCartAddFailure
+        isCartUpdateFailure
         }
     }
+
 export const updateCart=(productId,count=1,addOrRemove="add")=>{
     return (dispatch,getState) => {
         dispatch(cartUpdatePending(true));
@@ -48,10 +49,16 @@ export const updateCart=(productId,count=1,addOrRemove="add")=>{
                 productsToCart.splice(currentProductIndex,1);
         
        }
-        dispatch(cartAddSuccess(productsToCart)); 
+        dispatch(cartUpdateSuccess(productsToCart)); 
       }
 }
-
+export const clearCart=()=>{
+    return (dispatch,getState) => {
+         dispatch(cartUpdatePending(true));
+         let productsToCart=[];
+         dispatch(cartUpdateSuccess(productsToCart)); 
+    }
+}
 function _isContains(json, keyname, value,fromInside,index) {
     currentProductIndex="";
     return Object.keys(json).some(key => {

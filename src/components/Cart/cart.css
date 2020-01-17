@@ -44,7 +44,7 @@
     text-align: center;
    
 }
-#itemQuantity
+input.itemQuantity
 {
     width:30px;
     height:25px;
@@ -52,7 +52,7 @@
     margin-left:5px;
     text-align: center;
 }
-.itemQuantity
+div.itemQuantity
 {
     display: flex;
     justify-content: center;

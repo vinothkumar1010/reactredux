@@ -42,7 +42,7 @@ class Cart extends React.Component{
                         <div className="imageAndCount">
                         
                             <div className="cartImageHolder"><img src={process.env.PUBLIC_URL + "/images/"+item.productInfo[0].image} alt="productImage"></img></div>
-                            <div className="itemQuantity"><span className="reduceOne" onClick={()=>this.updateCartDetails(item.id,1,"remove")}>-</span><input type="text" value={item.quantity} name="itemQuantity" id="itemQuantity" onChange={(e)=>this.updateCartDetails(item.id,e.target.value,"unknown")}/><span className="addOneMore" onClick={()=>this.updateCartDetails(item.id,1,"add")}>+</span></div>
+                            <div className="itemQuantity"><span className="reduceOne" onClick={()=>this.updateCartDetails(item.id,1,"remove")}>-</span><input type="text" value={item.quantity} name={"itemQuantity"+index} id={"itemQuantity"+index} className="itemQuantity" onChange={(e)=>this.updateCartDetails(item.id,e.target.value,"unknown")}/><span className="addOneMore" onClick={()=>this.updateCartDetails(item.id,1,"add")}>+</span></div>
                         </div>
                         <div className="productInfo">
                                 <div className="productName">{item.productInfo[0].categoryName}</div>
